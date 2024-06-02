@@ -1,3 +1,4 @@
+import random
 import curses
 import locale
 from time import sleep
@@ -15,9 +16,11 @@ old = curses.curs_set(0)
 scr.keypad(1)
 scr.refresh()
 
-script = "revenge-of-the-sith"
 
 try:
+    with open("scripts") as f:
+        scripts = f.read().strip().split("\n")
+    script = random.choice(scripts)
     while True:
         rows, cols = scr.getmaxyx()
 
@@ -27,7 +30,7 @@ try:
         displayed = [""]
         for line in lines:
             for word in line:
-                if len(displayed[-1]) + 1 + len(line) > cols - 6:
+                if len(displayed[-1]) + 1 + len(line) > cols - 20:
                     displayed.append("")
                     if len(displayed) > rows - 6:
                         displayed = displayed[1:]
@@ -36,7 +39,7 @@ try:
 
                     scr.clear()
                     for i, d in enumerate(displayed):
-                        scr.addstr(3+i, 3, d)
+                        scr.addstr(3+i, 10, d)
                     scr.refresh()
                     sleep(0.05)
                 displayed[-1] += " "
