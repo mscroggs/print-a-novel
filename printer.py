@@ -16,7 +16,6 @@ old = curses.curs_set(0)
 scr.keypad(1)
 scr.refresh()
 
-
 try:
     with open("scripts") as f:
         scripts = f.read().strip().split("\n")
