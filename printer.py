@@ -17,10 +17,11 @@ scr.keypad(1)
 scr.refresh()
 
 try:
-    with open("scripts") as f:
-        scripts = f.read().strip().split("\n")
-    script = random.choice(scripts)
     while True:
+        with open("scripts") as f:
+            scripts = f.read().strip().split("\n")
+        script = random.choice(scripts)
+
         rows, cols = scr.getmaxyx()
 
         with open(script) as f:
@@ -48,6 +49,7 @@ try:
                 displayed = displayed[1:]
 
             sleep(0.05)
+        sleep(5)
 except KeyboardInterrupt:
     pass
 
