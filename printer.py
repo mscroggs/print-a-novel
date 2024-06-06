@@ -26,11 +26,11 @@ try:
 
         with open(script) as f:
             txt = f.read()
-        lines = [i.split() for i in txt.split("\n")]
+        lines = [i.split() for i in txt.split("\n\n")]
         displayed = [""]
         for line in lines:
             for word in line:
-                if len(displayed[-1]) + 1 + len(line) > cols - 20:
+                if len(displayed[-1]) + 1 + len(word) > cols - 20:
                     displayed.append("")
                     if len(displayed) > rows - 6:
                         displayed = displayed[1:]
